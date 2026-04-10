@@ -1044,7 +1044,23 @@ function initializeFilter() {
 
     if (!searchInput) return;
 
-    // Search input with debounce
+    /* ==================== HANDLE ENTER KEY / FORM SUBMISSION ==================== */
+function handleSearchSubmit(event) {
+    event.preventDefault(); // Prevent page reload
+    filterCards(); // Trigger search
+    console.log("Search triggered via Enter key");
+}
+
+function initializeFilter() {
+    const searchInput = document.getElementById("searchInput");
+    const typeFilter = document.getElementById("typeFilter");
+    const countryFilter = document.getElementById("countryFilter");
+    const clearBtn = document.getElementById("clearSearch");
+    const searchForm = document.getElementById("searchForm");
+
+    if (!searchInput) return;
+
+    // Search input with debounce (typing)
     searchInput.addEventListener("input", function() {
         syncSearchClearButton();
 
@@ -1053,6 +1069,39 @@ function initializeFilter() {
             filterCards();
         }, 200);
     });
+
+    // Handle Enter key (redundant but safe)
+    searchInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            filterCards();
+        }
+    });
+
+    // Clear search button
+    if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            syncSearchClearButton();
+            filterCards();
+            searchInput.focus();
+        });
+    }
+
+    // Type filter
+    if (typeFilter) {
+        typeFilter.addEventListener("change", filterCards);
+    }
+
+    // Country filter
+    if (countryFilter) {
+        countryFilter.addEventListener("change", filterCards);
+    }
+
+    syncSearchClearButton();
+    filterCards();
+}
+/* ==================== END SEARCH & FILTER ==================== */
 
     // Clear search button
     if (clearBtn) {
