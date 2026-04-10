@@ -31,29 +31,29 @@
     </button>
 
     <div class="search-area" id="searchArea">
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" class="search-input" data-i18n-placeholder="Search opportunities" placeholder="">
-            <button class="search-clear" id="clearSearch" data-i18n-aria="Clear search">&times;</button>
-        </div>
-        <div class="filter-group">
-            <select id="typeFilter" class="filter-select">
-                <option value="all" data-i18n="All Types"></option>
-                <option value="scholarship" data-i18n="Scholarships"></option>
-                <option value="program" data-i18n="Programs"></option>
-                <option value="other" data-i18n="Other"></option>
-            </select>
-            <select id="countryFilter" class="filter-select">
-                <option value="all" data-i18n="All Countries"></option>
-                <option value="usa" data-i18n="USA"></option>
-                <option value="germany" data-i18n="Germany"></option>
-                <option value="uk" data-i18n="United Kingdom"></option>
-                <option value="france" data-i18n="France"></option>
-                <option value="europe" data-i18n="Europe"></option>
-                <option value="kosovo" data-i18n="Kosovo"></option>
-                <option value="international" data-i18n="International"></option>
-            </select>
-        </div>
+    <form class="search-wrapper" id="searchForm" onsubmit="handleSearchSubmit(event)">
+        <input type="text" id="searchInput" class="search-input" data-i18n-placeholder="Search opportunities" placeholder="" autocomplete="off">
+        <button type="button" class="search-clear" id="clearSearch" data-i18n-aria="Clear search">&times;</button>
+    </form>
+    <div class="filter-group">
+        <select id="typeFilter" class="filter-select">
+            <option value="all" data-i18n="All Types"></option>
+            <option value="scholarship" data-i18n="Scholarships"></option>
+            <option value="program" data-i18n="Programs"></option>
+            <option value="other" data-i18n="Other"></option>
+        </select>
+        <select id="countryFilter" class="filter-select">
+            <option value="all" data-i18n="All Countries"></option>
+            <option value="usa" data-i18n="USA"></option>
+            <option value="germany" data-i18n="Germany"></option>
+            <option value="uk" data-i18n="United Kingdom"></option>
+            <option value="france" data-i18n="France"></option>
+            <option value="europe" data-i18n="Europe"></option>
+            <option value="kosovo" data-i18n="Kosovo"></option>
+            <option value="international" data-i18n="International"></option>
+        </select>
     </div>
+</div>
 
     <div class="nav-links" id="navLinks">
         <a href="index.html" data-i18n="Home"></a>
