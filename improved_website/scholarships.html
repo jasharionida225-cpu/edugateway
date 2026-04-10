@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="sq">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-i18n-page-title="Scholarships - EduGateway">
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        <div class="logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2v-5"/>
+            </svg>
+        </div>
+        <span data-i18n="EduGateway"></span>
+    </a>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" data-i18n-aria="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="search-area" id="searchArea">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" class="search-input" data-i18n-placeholder="Search opportunities" placeholder="">
+            <button class="search-clear" id="clearSearch" data-i18n-aria="Clear search">&times;</button>
+        </div>
+        <div class="filter-group">
+            <select id="typeFilter" class="filter-select">
+                <option value="all" data-i18n="All Types"></option>
+                <option value="scholarship" data-i18n="Scholarships"></option>
+                <option value="program" data-i18n="Programs"></option>
+                <option value="other" data-i18n="Other"></option>
+            </select>
+            <select id="countryFilter" class="filter-select">
+                <option value="all" data-i18n="All Countries"></option>
+                <option value="usa" data-i18n="USA"></option>
+                <option value="germany" data-i18n="Germany"></option>
+                <option value="uk" data-i18n="United Kingdom"></option>
+                <option value="france" data-i18n="France"></option>
+                <option value="europe" data-i18n="Europe"></option>
+                <option value="kosovo" data-i18n="Kosovo"></option>
+                <option value="international" data-i18n="International"></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="Home"></a>
+        <a href="scholarships.html" data-i18n="Scholarships"></a>
+        <a href="programs.html" data-i18n="Programs"></a>
+        <a href="other.html" data-i18n="Other"></a>
+        <a href="about.html" data-i18n="About"></a>
+    </div>
+
+    <select id="languageSelect" class="language-select">
+        <option value="sq" data-i18n="Shqip"></option>
+        <option value="en" data-i18n="English"></option>
+    </select>
+</nav>
+
+<!-- ========== CONTENT ========== -->
+<section>
+
+    <h1 data-i18n="Scholarships"></h1>
+
+    <div class="quick-filters" id="quickFilters">
+        <button class="chip" type="button" data-quick-filter="country" data-value="kosovo" data-i18n="Kosovo"></button>
+        <button class="chip" type="button" data-quick-filter="country" data-value="usa" data-i18n="USA"></button>
+        <button class="chip" type="button" data-quick-filter="country" data-value="europe" data-i18n="Europe"></button>
+        <button class="chip" type="button" data-quick-filter="country" data-value="international" data-i18n="International"></button>
+        <button class="chip chip-ghost" type="button" data-quick-filter="clear" data-i18n="Clear all filters"></button>
+    </div>
+
+    <!-- Search Info Bar -->
+    <div class="search-info" id="searchInfo">
+        <div class="results-count" id="resultsCount"></div>
+        <div class="active-filters" id="activeFilters"></div>
+        <button class="suggestion-btn hidden" id="clearAllFilters" onclick="clearAllFilters()" style="display: none;">
+            <span data-i18n="Clear all filters"></span>
+        </button>
+    </div>
+
+    <!-- No Results Message -->
+    <div class="no-results" id="noResults">
+        <div class="no-results-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="8" y1="8" x2="14" y2="14"/>
+                <line x1="14" y1="8" x2="8" y2="14"/>
+            </svg>
+        </div>
+        <h3 id="noResultsTitle" data-i18n="No results found"></h3>
+        <p id="noResultsText" data-i18n="Try adjusting your filters or search terms"></p>
+        <div class="no-results-suggestions">
+            <button class="suggestion-btn" onclick="clearAllFilters()" data-i18n="Clear all filters"></button>
+            <button class="suggestion-btn" onclick="clearSearchFilter()" data-i18n="Try a broader search"></button>
+            <button class="suggestion-btn" onclick="clearTypeFilter()" data-i18n="Remove filters"></button>
+        </div>
+    </div>
+
+    <!-- Cards Container -->
+    <div class="card-container">
+
+        <!-- 🇽🇰 Kosovo -->
+        <div class="card" data-type="scholarship" data-country="kosovo">
+            <div class="card-header">
+                <h3 data-i18n="United World Colleges (UWC)"></h3>
+                <span class="card-country">🇽🇰</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="UWC is a global network of international boarding schools where students from more than 150 countries study together and complete the International Baccalaureate (IB) diploma.|Key details:|Age: 16–18|Duration: 2 years|Scholarship: many students receive full funding covering tuition and living costs|Kosovo students apply through the national UWC committee."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://apply.uwc.org/')"></button>
+        </div>
+
+        <!-- 🇺🇸 USA -->
+        <div class="card" data-type="scholarship" data-country="usa">
+            <div class="card-header">
+                <h3 data-i18n="ASSIST Scholars Program"></h3>
+                <span class="card-country">🇺🇸</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="ASSIST places talented international students into top private high schools in the United States on merit-based scholarships.|Key details:|Age: usually 15–17|Duration: 1 academic year|Coverage: large tuition scholarships|Students from countries without offices can still apply directly."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.assistscholars.org/')"></button>
+        </div>
+
+        <!-- 🇺🇸 USA -->
+        <div class="card" data-type="scholarship" data-country="usa">
+            <div class="card-header">
+                <h3 data-i18n="Global Vision Scholarship"></h3>
+                <span class="card-country">🇺🇸</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="The Global Vision Scholarship supports international students enrolling in an online American high school program.|Key details:|Age: 14+|Study type: online high school courses|Scholarship: covers up to six courses toward a U.S. diploma|Requires internet access and English proficiency."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://smartschools-international.org/program/')"></button>
+        </div>
+
+        <!-- 🇺🇸 USA -->
+        <div class="card" data-type="scholarship" data-country="usa">
+            <div class="card-header">
+                <h3 data-i18n="RaiseMe Micro-Scholarships"></h3>
+                <span class="card-country">🇺🇸</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="RaiseMe is an online platform that allows high school students to earn micro-scholarships for achievements.|Key details:|Students build a scholarship portfolio during high school|Many universities participate|Awards are based on academic achievements."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.raise.me/')"></button>
+        </div>
+
+        <!-- International -->
+        <div class="card" data-type="scholarship" data-country="international">
+            <div class="card-header">
+                <h3 data-i18n="The School Fund Scholarships"></h3>
+                <span class="card-country">🌍</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="This nonprofit helps students continue their education through crowdfunded scholarships.|Key details:|Open to students from many countries|Scholarships help cover school fees|Often targeted at students with financial need."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://theschoolfund.org/')"></button>
+        </div>
+
+        <!-- International -->
+        <div class="card" data-type="scholarship" data-country="international">
+            <div class="card-header">
+                <h3 data-i18n="Tortuga Study Abroad Scholarship"></h3>
+                <span class="card-country">🌍</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="A travel-focused scholarship for students interested in studying abroad.|Key details:|Award: around $1,000|Open to international students|Requires an essay about travel and education|Lower competition compared to major scholarships."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.tortugabackpacks.com/pages/study-abroad-scholarship')"></button>
+        </div>
+
+        <!-- 🇩🇪 Germany -->
+        <div class="card" data-type="scholarship" data-country="germany">
+            <div class="card-header">
+                <h3 data-i18n="DAAD High School Scholarships"></h3>
+                <span class="card-country">🇩🇪</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="Scholarships funded by Germany that support international students in academic exchange and study programs.|Key details:|Age: high school students|Location: Germany|Coverage: partial to full funding|Focus on academic excellence and cultural exchange."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.daad.de/en/')"></button>
+        </div>
+
+        <!-- 🇩🇪 Germany -->
+        <div class="card" data-type="scholarship" data-country="germany">
+            <div class="card-header">
+                <h3 data-i18n="SBW Berlin Scholarship"></h3>
+                <span class="card-country">🇩🇪</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="A fully funded scholarship in Germany for young people committed to social projects.|Key details:|Coverage: tuition, housing, stipend|Level: high school graduates / university pathway|Focus: leadership and social impact|Open to students from developing countries including Kosovo."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://sbw.berlin/en/sbw-berlin-scholarship/')"></button>
+        </div>
+
+        <!-- 🇭🇺 Hungary -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Hungarian Diaspora Scholarship"></h3>
+                <span class="card-country">🇭🇺</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="A scholarship program funded by Hungary that supports students from various countries.|Key details:|Coverage: tuition, accommodation, stipend|Level: mainly for future university studies|Good long-term opportunity for planning ahead."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://diasporascholarship.hu/en/')"></button>
+        </div>
+
+        <!-- 🇪🇺 Europe -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Erasmus+ Scholarships"></h3>
+                <span class="card-country">🇪🇺</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="European Union funded opportunities supporting education, exchanges, and youth participation across Europe.|Key details:|Coverage: travel, accommodation, participation costs|Includes exchanges, training, and youth programs|Widely accessible to Balkan students."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://erasmus-plus.ec.europa.eu/')"></button>
+        </div>
+
+        <!-- 🇹🇷 Turkey -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Türkiye Scholarships"></h3>
+                <span class="card-country">🇹🇷</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="A fully funded scholarship program by the Turkish government for international students.|Key details:|Coverage: tuition, housing, stipend, flights|Level: mainly university preparation|Popular among Balkan students."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.turkiyeburslari.gov.tr/')"></button>
+        </div>
+
+        <!-- International -->
+        <div class="card" data-type="scholarship" data-country="international">
+            <div class="card-header">
+                <h3 data-i18n="AFS Global Scholarships"></h3>
+                <span class="card-country">🌍</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="AFS offers intercultural exchange scholarships for high school students worldwide.|Key details:|Age: 15–18|Duration: semester or year|Coverage: often partial or full funding|Focus: cultural exchange and global learning."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.afs.org/')"></button>
+        </div>
+
+        <!-- 🇦🇹 Austria -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Austrian Government Scholarships"></h3>
+                <span class="card-country">🇦🇹</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="Scholarships provided by Austria for international students through various exchange programs.|Key details:|Coverage: tuition, accommodation, stipend|Location: Austria|Includes short-term and long-term opportunities|Open to Kosovo students."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://studyinaustria.at/en/')"></button>
+        </div>
+
+        <!-- 🇳🇱 Netherlands -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="NL Scholarship (Netherlands)"></h3>
+                <span class="card-country">🇳🇱</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="A scholarship for international students who want to study in the Netherlands.|Key details:|Coverage: €5,000 grant|Level: future university studies|Open to non-EU students including Kosovo|Offered by Dutch universities."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.studyinnl.org/finances/nl-scholarship')"></button>
+        </div>
+
+        <!-- 🇮🇹 Italy -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Italian Government Scholarships"></h3>
+                <span class="card-country">🇮🇹</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="Scholarships offered by Italy for international students to study in Italian institutions.|Key details:|Coverage: tuition + monthly allowance|Level: future studies|Includes many English-taught programs|Open to Kosovo students."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://studyinitaly.esteri.it/')"></button>
+        </div>
+
+        <!-- 🇫🇷 France -->
+        <div class="card" data-type="scholarship" data-country="france">
+            <div class="card-header">
+                <h3 data-i18n="Eiffel Excellence Scholarship"></h3>
+                <span class="card-country">🇫🇷</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="A prestigious French government scholarship for top international students.|Key details:|Coverage: monthly stipend + travel|Level: future university studies|Highly competitive|Open internationally."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence')"></button>
+        </div>
+
+        <!-- 🇨🇿 Czech Republic -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Czech Government Scholarships"></h3>
+                <span class="card-country">🇨🇿</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="Scholarships for international students to study in the Czech Republic.|Key details:|Coverage: tuition + stipend|Level: future university studies|Popular among Balkan students|Fully funded options available."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.studyin.cz/scholarships/')"></button>
+        </div>
+
+        <!-- 🇵🇱 Poland -->
+        <div class="card" data-type="scholarship" data-country="europe">
+            <div class="card-header">
+                <h3 data-i18n="Polish National Agency Scholarships"></h3>
+                <span class="card-country">🇵🇱</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="Scholarships offered by Poland for international students through NAWA programs.|Key details:|Coverage: tuition + stipend|Level: future studies|Open to many countries including Kosovo|Increasingly popular in Europe."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://nawa.gov.pl/en/')"></button>
+        </div>
+
+        <!-- 🇬🇧 UK -->
+        <div class="card" data-type="scholarship" data-country="uk">
+            <div class="card-header">
+                <h3 data-i18n="Chevening Scholarships (UK)"></h3>
+                <span class="card-country">🇬🇧</span>
+            </div>
+            <span class="card-type scholarship" data-i18n="Scholarship"></span>
+            <p data-i18n="The UK's government global scholarship program for outstanding students.|Key details:|Coverage: tuition, travel, living expenses|Level: postgraduate studies|Focus: leadership and academic excellence|Open to international students including Kosovo."></p>
+            <button data-i18n="Visit Website" onclick="window.open('https://www.chevening.org/')"></button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========== NOTIFICATIONS (collapsible tray) ========== -->
+<div class="notifications-root" id="notificationsRoot">
+    <button type="button" class="notifications-toggle" id="notificationsToggle" data-i18n-aria="Open notifications" aria-expanded="false" aria-controls="notificationsPanel">
+        <span class="notifications-toggle__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </span>
+        <span class="notifications-toggle__badge" id="notificationsBadge" aria-hidden="true">0</span>
+    </button>
+    <div class="notifications-backdrop" id="notificationsBackdrop"></div>
+    <aside class="notifications-drawer" id="notificationsPanel" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="notificationsDrawerTitle">
+        <div class="notifications-drawer__chrome">
+            <div class="notifications-drawer__grab" aria-hidden="true">
+                <span class="notifications-drawer__grab-bar"></span>
+            </div>
+            <div class="notifications-drawer__header">
+                <h2 class="notifications-drawer__title" id="notificationsDrawerTitle" data-i18n="Notifications"></h2>
+                <button type="button" class="notifications-drawer__close" id="notificationsDrawerClose" data-i18n-aria="Close notifications">&times;</button>
+            </div>
+            <div class="notifications-drawer__body">
+                <div class="notifications-drawer__list">
+                    <article class="notification-card notification-card--reminder" data-notification-id="reminder">
+                        <button type="button" class="notification-card__close" data-i18n-aria="Dismiss">&times;</button>
+                        <div class="notification-card__body">
+                            <h4 class="notification-card__heading">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span data-i18n="Reminder"></span>
+                            </h4>
+                            <p class="notification-card__text" data-i18n="Upcoming deadlines this month"></p>
+                        </div>
+                    </article>
+                    <article class="notification-card notification-card--feedback" data-notification-id="feedback">
+                        <button type="button" class="notification-card__close" data-i18n-aria="Dismiss">&times;</button>
+                        <div class="notification-card__body">
+                            <h4 class="notification-card__heading">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                                </svg>
+                                <span data-i18n="Feedback"></span>
+                            </h4>
+                            <a href="#" class="notification-card__link" data-i18n="Share your thoughts"></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
